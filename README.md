@@ -56,8 +56,8 @@ for n := range evens {
 
 A generic set type, `Set[T]`, backed by a `map[T]struct{}`.  This has
 the same characteristics as direct use of a `map[T]struct{}` to
-represent a set.  But `Set[T]` provides convenience methods and
-functions to allow clearer, more concise code:
+represent a set.  But `Set[T]` provides convenience methods to allow
+clearer, more concise code:
 
 - Construction: `New`, `FromSlice`, `Collect` (all return nil for empty
   inputs)
@@ -80,7 +80,7 @@ fmt.Println(s.Union(set.New(4, 5))) // {1, 2, 3, 4, 5}
 ```
 
 A nil `Set[T]` is a valid, empty, read-only set, just like any nil map.
-`NilToEmpty` and `AddNE` are convenience functions to simplify code
+`NilToEmpty` and `AddNE` are convenience methods to simplify code
 modifying nil sets.
 
 Because `Set[T]` is simply a map, you can treat it as such when
@@ -91,10 +91,10 @@ convenient.  For example,
   `make(Set[string], n)` with space pre-allocated for `n` elements
 - `for x := range s { ... }` to iterate over the elements of a set
 
-#### How this compares to alternatives
+#### How this generic set package compares to alternatives
 
-Some other open source generic set types for Go are available.  But
-none seem to fill exactly the same niche as this one.
+Some other open source generic set types for Go are available.  None
+fill exactly the same niche as this one.
 
 - The original Go generics proposal included [a sketch of a similar
   set type as an
@@ -112,7 +112,7 @@ none seem to fill exactly the same niche as this one.
   contexts.  Furthermore, the [addition of iterators in Go
   1.23](https://go.dev/blog/range-functions) supersedes the
   `Collection[T]` interface in many ways.
-- More generally, this set package was designed to fit well into
+- More generally, this set package is designed to fit well into
   recent Go releases.  It omits features that are made redundant by
   the iterators of Go 1.23.  And it follows the same conventions as the
   `slices` and `maps` packages (e.g. `Collect` returns `nil` rather

@@ -1,7 +1,7 @@
 // Package set provides a generic set type, [Set], backed by a
 // map[T]struct{}.  This has the same characteristics as direct use of
 // a map[T]struct{} to represent a set, but Set provides convenience
-// methods and functions to allow clearer, more concise code.
+// methods to allow clearer, more concise code.
 //
 // Because a Set is simply a map, it can be treated as one when
 // convenient.  For example, len(s) gives the number of elements, and
