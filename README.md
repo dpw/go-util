@@ -1,6 +1,7 @@
 # go-util
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/dpw/go-util.svg)](https://pkg.go.dev/github.com/dpw/go-util)
+[![Tests](https://github.com/dpw/go-util/actions/workflows/test.yml/badge.svg)](https://github.com/dpw/go-util/actions/workflows/test.yml)
 
 A collection of simple Go utility packages, providing generic helpers
 for working with iterators, sets, and comparisons.
