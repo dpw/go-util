@@ -3,15 +3,74 @@
 // a map[T]struct{} to represent a set, but Set provides convenience
 // methods to allow clearer, more concise code.
 //
+// The functions and methods fall into these groups:
+//
+//   - Construction: [New], [FromSlice] and [Collect], which all return
+//     nil for empty inputs.
+//   - Query: [Set.Contains], [Set.ContainsAll], [Set.ContainsAny],
+//     [Set.Equal], [Set.IsSubsetOf], [Set.Elements] (an iterator over
+//     the elements) and [Set.Clone].
+//   - Mutation: [Set.Add], [Set.AddAll], [Set.Remove] and
+//     [Set.RemoveAll]; and [Set.AddNE] and [Set.AddAllNE], which
+//     allocate the set if it is nil.
+//   - Combination: [Set.Intersect], [Set.Subtract] and [Set.Union],
+//     which each return a new set, leaving their operands unchanged.
+//   - Utilities: [Set.NilToEmpty], and [Set.Reachable] (reachability
+//     under a relation).
+//
+// The methods with the suffix "All" accept an [iter.Seq], for
+// convenience when mixing sets with other collection types.
+//
+// # Nil sets
+//
+// A nil Set is a valid, empty, read-only set, just like any nil map.
+// [Set.NilToEmpty], [Set.AddNE] and [Set.AddAllNE] simplify code that
+// modifies sets that might be nil.
+//
+// # Sets are maps
+//
 // Because a Set is simply a map, it can be treated as one when
-// convenient.  For example, len(s) gives the number of elements, and
-// the elements can be iterated over with a simple for-range statement:
+// convenient.  For example:
+//
+//   - len(s) gives the number of elements in s.
+//   - make(Set[string]) allocates a new set of strings, and
+//     make(Set[string], n) allocates one with space for n elements.
+//
+// And the elements can be iterated over with a simple for-range
+// statement:
 //
 //	for x := range s {
 //		// ...
 //	}
 //
-// A nil Set is a valid, empty, read-only set, just like any nil map.
+// # Comparison with alternatives
+//
+// Some other open source generic set types for Go are available.  None
+// fill exactly the same niche as this one.
+//
+//   - The original Go generics proposal included [a sketch of a similar
+//     set type] as an example.  This package could be seen as a fully
+//     elaborated descendant of that example.
+//   - [deckarep/golang-set] defines its Set[T] as an interface, and
+//     provides thread-safe and non-thread-safe implementations.  That's
+//     overkill for most contexts, where a concrete non-thread-safe
+//     variant suffices.
+//   - [hashicorp/go-set] provides a suite of set implementations,
+//     including one backed by a map[T]struct{}.  These implementations
+//     implement a common Collection[T] interface.  Again, this is
+//     overkill for most contexts.  Furthermore, the [addition of
+//     iterators in Go 1.23] supersedes the Collection[T] interface in
+//     many ways.
+//   - More generally, this package is designed to fit well into recent
+//     Go releases.  It omits features that are made redundant by the
+//     iterators of Go 1.23.  And it follows the same conventions as the
+//     [slices] and [maps] packages (e.g. [Collect] returns nil rather
+//     than an empty set).
+//
+// [a sketch of a similar set type]: https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#sets
+// [deckarep/golang-set]: https://github.com/deckarep/golang-set
+// [hashicorp/go-set]: https://github.com/hashicorp/go-set
+// [addition of iterators in Go 1.23]: https://go.dev/blog/range-functions
 package set
 
 import (

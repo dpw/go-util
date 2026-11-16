@@ -1,3 +1,10 @@
+// Package iterx provides combinators for [iter.Seq] and [iter.Seq2]
+// iterators, complementing the standard [iter], [slices] and [maps]
+// packages.
+//
+// The combinators are lazy: they consume their input sequences only as
+// their output sequences are consumed.  If consumption of an output
+// sequence stops early, consumption of the input sequence stops too.
 package iterx
 
 import (

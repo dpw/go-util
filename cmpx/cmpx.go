@@ -1,3 +1,5 @@
+// Package cmpx provides helpers for comparison functions, complementing
+// the standard [cmp] package.
 package cmpx
 
 import (
