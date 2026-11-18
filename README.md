@@ -20,6 +20,7 @@ Requires Go 1.27 or later.
 | Package | Description |
 | ------- | ----------- |
 | [`cmpx`](https://pkg.go.dev/github.com/dpw/go-util/cmpx) | Helpers for comparison functions, complementing `cmp`. |
+| [`errorsx`](https://pkg.go.dev/github.com/dpw/go-util/errorsx) | Error wrapping with stack traces and rich formatting. |
 | [`iterx`](https://pkg.go.dev/github.com/dpw/go-util/iterx) | Combinators for `iter.Seq` and `iter.Seq2` iterators. |
 | [`set`](https://pkg.go.dev/github.com/dpw/go-util/set) | A generic set type backed by a `map[T]struct{}`. |
 
