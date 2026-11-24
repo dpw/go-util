@@ -23,6 +23,7 @@ Requires Go 1.27 or later.
 | [`errorsx`](https://pkg.go.dev/github.com/dpw/go-util/errorsx) | Error wrapping with stack traces and rich formatting. |
 | [`iterx`](https://pkg.go.dev/github.com/dpw/go-util/iterx) | Combinators for `iter.Seq` and `iter.Seq2` iterators. |
 | [`set`](https://pkg.go.dev/github.com/dpw/go-util/set) | A generic set type backed by a `map[T]struct{}`. |
+| [`task`](https://pkg.go.dev/github.com/dpw/go-util/task) | General functionality for working with tasks: activities controlled by a `context.Context` that may fail. |
 
 See each package's documentation for details and examples.
 
